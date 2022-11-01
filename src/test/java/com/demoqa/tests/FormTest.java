@@ -5,6 +5,8 @@ import com.demoqa.pages.FormPage;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import static io.qameta.allure.Allure.step;
+
 public class FormTest {
     FormPage formPage = new FormPage();
     TestData testData = new TestData();
@@ -18,7 +20,7 @@ public class FormTest {
 
     @Test
     void firstTest() {
-
+        step("Fill form", () -> {
         formPage.openPage()
                 .setFirstName(testData.firstName)
                 .setLastName(testData.lastName)
@@ -33,7 +35,8 @@ public class FormTest {
                 .setState(testData.state)
                 .setCity(testData.city)
                 .submit();
-
+        });
+        step("Check form results", () -> {
         formPage.checkResultTableVisible()
                 .checkResult("Student Name", testData.firstName + " " + testData.lastName)
                 .checkResult("Student Email", testData.email)
@@ -45,5 +48,6 @@ public class FormTest {
                 .checkResult("Picture", testData.picture)
                 .checkResult("Address", testData.address)
                 .checkResult("State and City", testData.state + " " + testData.city);
+        });
     }
 }
