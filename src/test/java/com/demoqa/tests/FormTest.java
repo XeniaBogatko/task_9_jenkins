@@ -21,16 +21,24 @@ public class FormTest {
         SelenideLogger.addListener("allure", new AllureSelenide());
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        //capabilities.setCapability("browserName", "chrome");
+
+        //capabilities.setCapability("browserName", ""chrome);
         //capabilities.setCapability("browserVersion", "100.0");
         capabilities.setCapability("enableVNC", true);
         capabilities.setCapability("enableVideo", true);
 
-        Configuration.browserCapabilities = capabilities;
         Configuration.baseUrl = "https://demoqa.com";
-        Configuration.browserSize = "1024x768";
+        Configuration.browserCapabilities = capabilities;
+        Configuration.browser = System.getProperty("browser", "chrome");
+        Configuration.browserSize = System.getProperty("browser_size", "1024x768");
+        Configuration.browserVersion = System.getProperty("browser_version", "107");
+        String serverRemote = System.getProperty("server_remote");
+
         //Configuration.holdBrowserOpen = true;
-        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+        //Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+        if (serverRemote != null) {
+            Configuration.remote = serverRemote;
+        }
     }
 
     @AfterEach

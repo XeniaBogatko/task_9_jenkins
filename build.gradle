@@ -30,7 +30,7 @@ allure {
 dependencies {
     testImplementation(
             "io.qameta.allure:allure-selenide:$allureVersion",
-            "org.junit.jupiter:junit-jupiter:5.9.0",
+            "org.junit.jupiter:junit-jupiter:5.9.1",
             "org.slf4j:slf4j-simple:$slf4jVersion",
             "com.github.javafaker:javafaker:1.0.2",
             'com.codeborne:selenide:6.9.0'
