@@ -8,6 +8,7 @@ import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import static io.qameta.allure.Allure.step;
@@ -21,11 +22,12 @@ public class FormTest {
         SelenideLogger.addListener("allure", new AllureSelenide());
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
-
+        ChromeOptions browserOptions = new ChromeOptions();
         //capabilities.setCapability("browserName", ""chrome);
         //capabilities.setCapability("browserVersion", "100.0");
-        capabilities.setCapability("enableVNC", true);
-        capabilities.setCapability("enableVideo", true);
+        browserOptions.setCapability("enableVNC", true);
+        //capabilities.setCapability("enableVNC", true);
+        browserOptions.setCapability("enableVideo", true);
 
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.browserCapabilities = capabilities;
